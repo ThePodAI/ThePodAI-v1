@@ -1,17 +1,20 @@
-import HomeView from "./screens/homeScreen";
 import {SafeAreaView, StyleSheet, View, Dimensions} from "react-native";
-import { useDeviceOrientation } from "@react-native-community/hooks";
-import WelcomeScreen from "./app/screens/WelcomeScreen";
-import {StatusBar} from "expo-status-bar";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import OnboardingScreen from "../AlphaV1/app/screens/onboardingScreen";
+import WelcomeScreen from "../AlphaV1/app/screens/WelcomeScreen"
+
+const AppStack = createStackNavigator();
 
 export default function App() {
   return (
-
-        <WelcomeScreen/>
+        <NavigationContainer>
+            <AppStack.Navigator screenOptions={{headerShown: false}}>
+                <AppStack.Screen name="PodAI" component={OnboardingScreen} />
+                <AppStack.Screen name="Welcome" component={WelcomeScreen} />
+            </AppStack.Navigator>
+        </NavigationContainer>
   );
 }
-
- const styles = StyleSheet.create({
-});
 
 
