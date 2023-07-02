@@ -1,28 +1,17 @@
-import HomeView from "./Screens/homeScreen";
-import {SafeAreaView, StyleSheet, View} from "react-native";
+import HomeView from "./screens/homeScreen";
+import {SafeAreaView, StyleSheet, View, Dimensions} from "react-native";
+import { useDeviceOrientation } from "@react-native-community/hooks";
+import WelcomeScreen from "./app/screens/WelcomeScreen";
+import {StatusBar} from "expo-status-bar";
 
 export default function App() {
   return (
 
-        <View style={styles.container}>
-
-            <SafeAreaView style={styles.safeAreaStyle}>
-            <HomeView/>
-            </SafeAreaView>
-
-        </View>
+        <WelcomeScreen/>
   );
 }
 
  const styles = StyleSheet.create({
-    container: {
-        backgroundColor: '#f9f6f6',
-        height: "100%",
-        width: "100%",
-    },
-     safeAreaStyle: {
-         marginLeft: 20,
-         marginRight: 20,
-     }
 });
+
 
