@@ -1,14 +1,13 @@
 # ThePodAI V1
-<img src="../AlphaV1/app/assets/backgrounds/welcomeScreenImage.jpg" height="500"><br>
+<img src="https://github.com/ThePodAI/ThePodAI-v1/blob/master/app/assets/backgrounds/welcomeScreenImage.jpg" height="500"><br>
 #### ThePodAI Development Version 1 <br>
 ## <u>Table of Contents</u>
 
 - [Installation](#installation)
 - [Usage](#usage)
 - [Features](#features)
-- [Configuration](#configuration)
 - [Contributing](#contributing)
-- [License](#license)
+- [Code walkthrough](#Code Walk Through)
 
 ## Installation
 
@@ -41,9 +40,24 @@ if you encounter any mailto: <a href="mailto:">develop.pod@thepodai.com</a>
 
 
 ## Features
-<>
+
 - [x] Login and Signup
 - [x] Welcome Screen
 - [x] Home Screen
+- [x] Onboarding Screen
+
+
+## Contributing
+<p>
+PodAI is a for-profit AI startup currently only selected are allowed to contribute to the project.
+As of now there is no plan for open source contribution for more visit <a href>thepodai.com/careers</a>
+</p>
+
+## Code Walk Through
+<p>
+For code walk through please refer <a href="https://github.com/ThePodAI/ThePodAI-v1/blob/master/WalkThrough.md">WalkThrough.md</a> 
+</p>
+
+
 
 
