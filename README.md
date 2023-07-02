@@ -7,7 +7,6 @@
 - [Usage](#usage)
 - [Features](#features)
 - [Contributing](#contributing)
-- [Code walkthrough](#Code Walk Through)
 
 ## Installation
 
