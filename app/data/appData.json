@@ -1,0 +1,26 @@
+{
+  "appLabels": {
+
+  "PodAILabels": {
+    "appName": "PodAI",
+    "appTagline": "All new AI Podcasting experience"
+  },
+  "welcomeScreenLabels": {
+    "welcomeText": "Welcome",
+    "taglineText": "To your personal online discussion app",
+    "taglineTwoText1": "A new & personalised",
+    "taglineTwoText2": "AI Podcast experience",
+    "getStartedText": "Get Started"
+  },
+  "catchyText": {
+    "promptAway": "Just one prompt away",
+    "ownAIPodcast": "from your own AI podcast.",
+    "listenAnywhere": "Listen anywhere, anytime.",
+    "soundsHuman": "Sounds exactly like a human."
+  }
+},
+  "appThemeColours": {
+
+  }
+
+}

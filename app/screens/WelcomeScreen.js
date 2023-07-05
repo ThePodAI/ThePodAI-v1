@@ -1,186 +1,101 @@
-import React from 'react-native';
+import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
-import { usePhoneNumber } from "./loginSignup";
+import { Ionicons } from "@expo/vector-icons";
+import appData from '../data/appData.json';
 
-function WelcomeScreen(props) {
-    const handlePhoneNumber = () => {
-        // Implement Google login functionality here
-        console.log('Continuing with Phone Number...');
-    };
-
-    const handleEmail = () => {
-        // Implement Apple login functionality here
-        console.log('Continuing with Email Address...');
-    };
-
-    const handleCreateAccount = () => {
-        // Implement Apple login functionality here
-        console.log('Continuing with Account Creation...');
-    };
-
-    const handleSkip = () => {
-        // Implement Apple login functionality here
-        console.log('Skipping...');
-    };
-
+export const WelcomeScreen = ({ navigation }) => {
     return (
-
-
-        // Main View
-        <View style={styles.background}>
-
-            {/* Top Image card*/}
-            <View style={styles.topImageContainer}>
-                    <Image style={styles.imageContainer} source={require('../assets/backgrounds/welcomeScreenImage.jpg')}></Image>
+        <View style={styles.container}>
+            <View style={styles.topContainer}>
+                <Image style={styles.image} source={require('../assets/backgrounds/welcomeScreenImage.jpg')} />
             </View>
 
-            {/* Bottom card*/}
             <View style={styles.bottomContainer}>
+                <Text style={styles.title}>Welcome</Text>
+                <Text style={styles.subtitle}>{appData.appLabels.PodAILabels.appTagline}</Text>
 
-                <Text style={styles.bottomContainerText}>Welcome</Text>
-                <Text style={styles.bottomContainerText}>to PodAI.</Text>
-
-           <View style={styles.buttonsContainer}>
-
-                <TouchableOpacity style={styles.phoneContinueButton} onPress={handlePhoneNumber}>
-                   <Text style={styles.loginButtonText}>Use Phone number</Text>
-                </TouchableOpacity>
-
-               <TouchableOpacity style={styles.emailContinueButton} onPress={handleEmail}>
-                   <Text style={styles.emailContinueText}>Use Email address</Text>
-               </TouchableOpacity>
-
-               <TouchableOpacity style={styles.loginInsteadButton} onPress={handleCreateAccount}>
-                   <Text style={styles.loginInsteadText}>Already have an account? Login</Text>
-               </TouchableOpacity>
-
-               <TouchableOpacity style={styles.skipButton} onPress={handleSkip}>
-                   <Text style={styles.skipButtonText}>Skip</Text>
-               </TouchableOpacity>
-
-
-
+                <View style={styles.taglineContainer}>
+                    <Text style={styles.tagline}>{appData.appLabels.catchyText.promptAway}</Text>
+                    <Text style={styles.tagline}>{appData.appLabels.catchyText.ownAIPodcast}</Text>
                 </View>
+
+                <View style={styles.taglineContainer2}>
+                    <Text style={styles.tagline}>{appData.appLabels.catchyText.listenAnywhere}</Text>
+                    <Text style={styles.tagline}>{appData.appLabels.catchyText.soundsHuman}</Text>
+                </View>
+
+                <TouchableOpacity style={styles.getStartedButton} onPress={() => navigation.navigate('Login')}>
+                    <Text style={styles.getStartedButtonText}>Get Started</Text>
+                    <Ionicons name="chevron-forward-circle-outline" size={30} color="black" />
+                </TouchableOpacity>
             </View>
-
-
         </View>
     );
 }
 
 const styles = StyleSheet.create({
-    background: {
+    container: {
         flex: 1,
-        justifyContent: 'flex-end',
-        alignItems: 'flex-end',
         backgroundColor: '#000000',
-        flexDirection: 'row',
     },
-    topImageContainer: {
-        backgroundColor: '#000000',
-        position: 'absolute',
-        top: '5%',
-        width: '100%',
-        height: '45%',
+    topContainer: {
+        flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
     },
-    imageContainer: {
+    image: {
         width: '90%',
         height: '90%',
+        resizeMode: 'contain',
     },
-
     bottomContainer: {
-        flexDirection: 'column',
-        justifyContent: 'flex-start',
-        width: '100%',
-        height: '60%',
+        flex: 1,
         backgroundColor: '#ffffff',
         borderTopLeftRadius: 30,
         borderTopRightRadius: 30,
+        padding: 20,
+        paddingTop: 40,
     },
-    bottomContainerText : {
-        fontSize: 38,
-        fontWeight: 'bold',
+    title: {
+        fontSize: 40,
         color: '#040404',
-        left: '5%',
-        top: '10%',
-        fontFamily: 'Helvetica Neue',
+        fontFamily: 'Futura-Medium',
+        marginBottom: 10,
     },
-
-    buttonsContainer: {
-        flexDirection: 'column',
-        width: '100%',
-        height: '50%',
-        backgroundColor: '#ffffff',
-        top: '20%',
+    subtitle: {
+        fontSize: 15,
+        color: '#A1A1A1',
+        fontFamily: 'GillSans',
+        marginBottom: 20,
+    },
+    taglineContainer: {
+        marginBottom: 30,
+        marginTop: 20,
+        alignItems: 'flex-start',
+    },
+    taglineContainer2: {
+        marginBottom: 25,
+        alignItems: 'flex-end',
+    },
+    tagline: {
+        fontSize: 26,
+        color: '#A1A1A1',
+        fontFamily: 'GillSans',
+    },
+    getStartedButton: {
+        flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-evenly',
-    },
-
-
-    phoneContinueButton: {
-        width: '90%',
-        height: 50,
-        backgroundColor: '#162470',
-        borderRadius: 8,
-        justifyContent: 'center',
-    },
-    emailContinueButton: {
-        width: '90%',
-        height: 50,
-        justifyContent: 'center',
-        backgroundColor: '#47AA8E',
-        borderRadius: 8,
-    },
-    loginInsteadButton: {
-        width: '90%',
-        height: 50,
-        justifyContent: 'center',
         backgroundColor: '#ffffff',
-        borderRadius: 8,
-        top: '5%',
+        paddingVertical: 10,
+        paddingHorizontal: 0,
     },
-
-    skipButton: {
-        width: '90%',
-        height: 50,
-        borderRadius: 8,
-        justifyContent: 'center',
-        alignItems: 'center',
-        // backgroundColor: '#162470',
+    getStartedButtonText: {
+        fontSize: 35,
+        color: '#000000',
+        fontFamily: 'GillSans',
+        marginRight: 10,
+        alignItems: 'flex-start',
     },
-    loginButtonText:{
-        fontSize: 16,
-        fontWeight: 'bold',
-        color: '#fff',
-        alignSelf: 'center',
-        fontFamily: 'Helvetica Neue',
-    },
-    emailContinueText :{
-        fontSize: 16,
-        fontWeight: 'bold',
-        color: '#fff',
-        alignSelf: 'center',
-    },
-    loginInsteadText :{
-        fontSize: 18,
-        // fontWeight: 'bold',
-        color: '#162470',
-        alignSelf: 'center',
-        textDecorationLine: 'underline',
-    },
-    skipButtonText :{
-        fontSize: 18,
-        fontWeight: 'bold',
-        color: '#47aa8e',
-        alignSelf: 'center',
-        fontFamily: 'Helvetica Neue',
-    },
-
-
-
 });
-
 
 export default WelcomeScreen;
