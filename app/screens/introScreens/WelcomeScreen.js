@@ -1,13 +1,13 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import { Ionicons } from "@expo/vector-icons";
-import appData from '../data/appData.json';
+import appData from '../../data/appData.json';
 
 export const WelcomeScreen = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <View style={styles.topContainer}>
-                <Image style={styles.image} source={require('../assets/backgrounds/welcomeScreenImage.jpg')} />
+                <Image style={styles.image} source={require('../../assets/backgrounds/welcomeScreenImage.jpg')} />
             </View>
 
             <View style={styles.bottomContainer}>

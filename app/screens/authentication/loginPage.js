@@ -1,7 +1,7 @@
 import React, {TextInput, TouchableOpacity} from 'react-native';
 import { View, Text, StyleSheet } from 'react-native';
 import {useState} from "react";
-import appData from '../data/appData.json';
+import appData from '../../data/appData.json';
 
 
 export function LoginPage({navigation}){
@@ -57,7 +57,7 @@ export function LoginPage({navigation}){
 
                     <View style={formStyles.finalBelowContainer}>
 
-                            <TouchableOpacity style={formStyles.signUpButtonContainer} onPress={() => navigation.navigate('Forgot Password')}>
+                            <TouchableOpacity style={formStyles.signUpButtonContainer} onPress={() => navigation.navigate('User Home')}>
                                 <Text style={formStyles.forgotPasswordText}>Forgot your password?</Text>
                             </TouchableOpacity>
 

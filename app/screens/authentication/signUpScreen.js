@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { View, Text, TextInput, StyleSheet, SafeAreaView, TouchableOpacity } from 'react-native';
-import appData from '../data/appData.json';
+import appData from '../../data/appData.json';
 
 export function SignUpScreen({navigation}) {
     const [isChecked, setIsChecked] = useState(false);

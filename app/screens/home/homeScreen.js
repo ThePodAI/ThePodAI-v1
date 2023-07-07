@@ -1,13 +1,14 @@
 import React, {SafeAreaView, TextInput, TouchableOpacity} from 'react-native';
 import { View, Text, StyleSheet } from 'react-native';
-import {useState} from "react";
+import {NavigationContainer} from "@react-navigation/native";
+import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 
 
 function HomeScreen(){
     return(
-        <SafeAreaView style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-            <Text>Welcome To Home Screen Darling ;) </Text>
-        </SafeAreaView>
+        <View>
+            <Text>This is a normal home screen</Text>
+        </View>
     )
 }
 

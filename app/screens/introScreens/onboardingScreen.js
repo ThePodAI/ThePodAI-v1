@@ -11,20 +11,20 @@ export default function OnboardingScreen() {
             [{
                 backgroundColor: '#fff',
                 title: 'Welcome',
-                image: <Image source={require('../assets/onboarding/frameOne.jpg')}/>,
+                image: <Image source={require('../../assets/onboarding/frameOne.jpg')}/>,
                 subtitle: 'to PodAI.',
             },
             {
                 backgroundColor: '#fff',
                 title: 'Welcome',
-                image: <Image source={require('../assets/onboarding/frameTwo.jpg')} />,
+                image: <Image source={require('../../assets/onboarding/frameTwo.jpg')} />,
                 subtitle: 'to PodAI.',
             },
                 {
                     backgroundColor: '#fff',
                     title: 'Welcome',
                     subtitle: 'to PodAI.',
-                    image: <Image source={require('../assets/onboarding/frameThree.jpg')} />,
+                    image: <Image source={require('../../assets/onboarding/frameThree.jpg')} />,
                 }
             ]
         } />
