@@ -1,18 +1,36 @@
-import React, {TextInput, TouchableOpacity} from 'react-native';
-import { View, Text, StyleSheet } from 'react-native';
-import {useState} from "react";
+import React, {StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
+import {useEffect, useState} from "react";
 import appData from '../../data/appData.json';
+import * as firebaseUserCreate from "firebase/auth";
+import {FIREBASE_AUTH} from "../../../firebase-auth";
 
 
 export function LoginPage({navigation}){
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const handleLogin = () => {
-        console.log('Email:', email);
-        console.log('Password:', password);
-    };
     const appLabel = require('/Users/ajay/WebstormProjects/AlphaV1/app/data/appData.json');
+
+    useEffect(() => {
+        return FIREBASE_AUTH.onAuthStateChanged(user => {
+            if (user) {
+                navigation.replace('Main')
+            }
+        });
+    }, [])
+
+    const handleLogin = () => {
+        firebaseUserCreate.signInWithEmailAndPassword(FIREBASE_AUTH, email, password)
+            .then((userCredential) => {
+                const user = userCredential.user;
+                console.log("Logged In with : ", userCredential.user.email);
+                console.log("User email : ", userCredential.user.email);
+                console.log("User user name : ", userCredential.user.displayName);
+                console.log('User created successfully');
+            })
+            .catch(error => console.log(error.message))
+
+    }
 
     return(
         <View style={loginStyles.parentContainer}>
@@ -39,7 +57,7 @@ export function LoginPage({navigation}){
 
                     <View style={formStyles.emailFieldContainer}>
                         <Text style={formStyles.emailText}>Email address</Text>
-                        <TextInput style={formStyles.emailField} placeholder="Email" placeholderTextColor="#D6D6D6" onChangeText={setEmail}/>
+                        <TextInput style={formStyles.emailField} placeholder="Email" placeholderTextColor="#D6D6D6" onChangeText={setEmail} autoCorrect={false} autoCapitalize={"none"}/>
                     </View>
 
                     <View style={formStyles.emailFieldContainer}>
@@ -49,7 +67,7 @@ export function LoginPage({navigation}){
 
                     <View style={formStyles.bottomButtonsContainer}>
 
-                        <TouchableOpacity style={loginStyles.loginButton} onPress={() => navigation.navigate('Home')}>
+                        <TouchableOpacity style={loginStyles.loginButton} onPress={handleLogin}>
                             <Text style={loginStyles.loginButtonText}>Login</Text>
                         </TouchableOpacity>
 
@@ -57,11 +75,11 @@ export function LoginPage({navigation}){
 
                     <View style={formStyles.finalBelowContainer}>
 
-                            <TouchableOpacity style={formStyles.signUpButtonContainer} onPress={() => navigation.navigate('User Home')}>
+                            <TouchableOpacity style={formStyles.signUpButtonContainer} onPress={() => navigation.navigate('ForgotPassword')}>
                                 <Text style={formStyles.forgotPasswordText}>Forgot your password?</Text>
                             </TouchableOpacity>
 
-                        <TouchableOpacity style={formStyles.signUpButtonContainer} onPress={() => navigation.navigate('Sign Up')}>
+                        <TouchableOpacity style={formStyles.signUpButtonContainer} onPress={() => navigation.navigate('SignUp')}>
                             <View style={formStyles.signUpButtonContainer}>
                                 <Text style={loginStyles.signupPartOne}>Don't have an account? </Text>
                                 <Text style={loginStyles.signupPartTwo}>Create one</Text>
@@ -177,7 +195,7 @@ const loginStyles = StyleSheet.create({
         justifyContent: 'flex-start',
         fontFamily: 'Futura-Medium',
         fontSize: 30,
-        color: '#000',
+        color: '#505050',
     },
 
     signupPartOne: {

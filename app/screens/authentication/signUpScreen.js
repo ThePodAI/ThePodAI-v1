@@ -1,15 +1,42 @@
 import React, {useState} from 'react';
-import { View, Text, TextInput, StyleSheet, SafeAreaView, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, StyleSheet, SafeAreaView, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
 import appData from '../../data/appData.json';
+import { FIREBASE_AUTH } from '../../../firebase-auth';
+import * as firebaseUserCreate from "firebase/auth";
 
-export function SignUpScreen({navigation}) {
+
+
+// /Users/ajay/WebstormProjects/AlphaV1/node_modules/@firebase/auth-compat/dist/auth-compat/index.d.ts
+
+function SignUpScreen({navigation}) {
     const [isChecked, setIsChecked] = useState(false);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [phone, setPhoneNumber] = useState('');
+    const [userName, setUserName] = useState('');
 
-    const handleCheckboxPress = () => {
+    const handleCheckboxPress  = () => {
         setIsChecked(!isChecked);
     };
+
+    const handleSignup = () => {
+        firebaseUserCreate.createUserWithEmailAndPassword(FIREBASE_AUTH, email, password)
+        .then((userCredential) => {
+                const user = userCredential.user;
+                userCredential.user.phoneNumber = phone;
+                userCredential.user.displayName = userName;
+
+                console.log(userCredential.user.displayName);
+                console.log(userCredential.user.email);
+                console.log(userCredential.user.phoneNumber);
+                console.log('User created successfully');
+            })
+            .catch(error => console.log(error.message))
+    }
+
     return (
         <SafeAreaView style={styles.safeArea}>
+
             <View style={styles.mainParentContainer}>
                 <View style={styles.headingContainer}>
                     <Text style={styles.headingText}>{appData.appLabels.PodAILabels.appName}</Text>
@@ -24,16 +51,16 @@ export function SignUpScreen({navigation}) {
 
                     <View style={styles.fieldsContainer}>
                         <Text style={styles.emailText}>Email address</Text>
-                        <TextInput style={styles.emailField} placeholder="Email" placeholderTextColor="#D6D6D6" />
+                        <TextInput style={styles.emailField} placeholder="Email" placeholderTextColor="#D6D6D6" onChangeText={text => setEmail(text)} autoCapitalize={"none"} autoCorrect={false}   />
 
                         <Text style={styles.emailText}>Phone Number</Text>
-                        <TextInput style={styles.emailField} placeholder="Phone Number" placeholderTextColor="#D6D6D6" />
+                        <TextInput style={styles.emailField} placeholder="Phone Number" placeholderTextColor="#D6D6D6" onChangeText={text => setPhoneNumber(text)} />
+
+                        <Text style={styles.emailText}>User Name</Text>
+                        <TextInput style={styles.emailField} placeholder="Your unique user name" placeholderTextColor="#D6D6D6" onChangeText={text => setUserName(text)} />
 
                         <Text style={styles.emailText}>Password</Text>
-                        <TextInput style={styles.emailField} secureTextEntry={true} placeholder="Password" placeholderTextColor="#D6D6D6" />
-
-                        <Text style={styles.emailText}>Confirm Password</Text>
-                        <TextInput style={styles.emailField} secureTextEntry={true} placeholder="Confirm Password" placeholderTextColor="#D6D6D6" />
+                        <TextInput style={styles.emailField} secureTextEntry={true} placeholder="Confirm Password" placeholderTextColor="#D6D6D6" onChangeText={text => setPassword(text)}  />
 
                         <View style={styles.checkboxContainer}>
                             <TouchableOpacity style={styles.checkboxContainer} onPress={handleCheckboxPress}>
@@ -42,9 +69,10 @@ export function SignUpScreen({navigation}) {
                             </TouchableOpacity>
                         </View>
 
-                        <TouchableOpacity style={styles.createAccountButton} onPress={() => navigation.navigate('User Home')}>
+                        <TouchableOpacity style={styles.createAccountButton} onPress={handleSignup}>
                             <Text style={styles.createAccountButtonText}>Create Account</Text>
                         </TouchableOpacity>
+
                     </View>
                 </View>
             </View>

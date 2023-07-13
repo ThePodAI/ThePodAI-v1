@@ -6,29 +6,24 @@ import appData from '../../data/appData.json';
 export const WelcomeScreen = ({ navigation }) => {
     return (
         <View style={styles.container}>
-            <View style={styles.topContainer}>
-                <Image style={styles.image} source={require('../../assets/backgrounds/welcomeScreenImage.jpg')} />
+            <View style={styles.logoContainer}>
+                <Image style={styles.image} source={require('../../assets/onboarding/mainIconWithName.jpg')} />
             </View>
 
-            <View style={styles.bottomContainer}>
-                <Text style={styles.title}>Welcome</Text>
-                <Text style={styles.subtitle}>{appData.appLabels.PodAILabels.appTagline}</Text>
+            <View style={styles.containerTwo}>
+                <Text style={styles.title}>Discover.Listen.Learn</Text>
 
-                <View style={styles.taglineContainer}>
-                    <Text style={styles.tagline}>{appData.appLabels.catchyText.promptAway}</Text>
-                    <Text style={styles.tagline}>{appData.appLabels.catchyText.ownAIPodcast}</Text>
-                </View>
-
-                <View style={styles.taglineContainer2}>
-                    <Text style={styles.tagline}>{appData.appLabels.catchyText.listenAnywhere}</Text>
-                    <Text style={styles.tagline}>{appData.appLabels.catchyText.soundsHuman}</Text>
-                </View>
+                <Text style={styles.contentText}>
+                    The power of Machine learning has now landed in Podcasting.
+                    With the power of GPT-4, we are able to generate a podcast based on your prompt.
+                    And, the best part is, it sounds so human that you can't tell the difference.
+                </Text>
 
                 <TouchableOpacity style={styles.getStartedButton} onPress={() => navigation.navigate('Login')}>
                     <Text style={styles.getStartedButtonText}>Get Started</Text>
-                    <Ionicons name="chevron-forward-circle-outline" size={30} color="black" />
                 </TouchableOpacity>
             </View>
+
         </View>
     );
 }
@@ -37,6 +32,19 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#000000',
+        justifyContent: 'flex-end',
+    },
+    logoContainer: {
+        height: '45%',
+        backgroundColor: '#000000',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    containerTwo: {
+        height: '45%',
+        backgroundColor: '#ffffff',
+        alignItems: 'center',
+        justifyContent: 'space-evenly',
     },
     topContainer: {
         flex: 1,
@@ -44,9 +52,16 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     image: {
-        width: '90%',
-        height: '90%',
+        width: '80%',
+        height: '80%',
         resizeMode: 'contain',
+    },
+    contentText: {
+        fontSize: 16,
+        color: '#9f9f9f',
+        fontFamily: 'GillSans',
+        textAlign: 'center',
+        width: '80%',
     },
     bottomContainer: {
         flex: 1,
@@ -57,10 +72,9 @@ const styles = StyleSheet.create({
         paddingTop: 40,
     },
     title: {
-        fontSize: 40,
-        color: '#040404',
+        fontSize: 30,
+        color: '#000000',
         fontFamily: 'Futura-Medium',
-        marginBottom: 10,
     },
     subtitle: {
         fontSize: 15,
@@ -83,15 +97,16 @@ const styles = StyleSheet.create({
         fontFamily: 'GillSans',
     },
     getStartedButton: {
-        flexDirection: 'row',
+        backgroundColor: '#000000',
+        width: '85%',
+        height: '15%',
         alignItems: 'center',
-        backgroundColor: '#ffffff',
-        paddingVertical: 10,
-        paddingHorizontal: 0,
+        justifyContent: 'center',
+        borderRadius: 8,
     },
     getStartedButtonText: {
-        fontSize: 35,
-        color: '#000000',
+        fontSize: 25,
+        color: '#ffffff',
         fontFamily: 'GillSans',
         marginRight: 10,
         alignItems: 'flex-start',
